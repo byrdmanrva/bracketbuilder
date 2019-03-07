@@ -1,47 +1,50 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $first_name = $("#first-name");
+var $last_name = $("#last-name");
+var $belt_color = $("#belt-color");
+var $weight = $("#weight")
+var $zipcode = $("#zipcode")
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $competitorList = $("#competitor-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveCompetitor: function(saveCompetitor) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/competitors",
+      data: JSON.stringify(saveCompetitor)
     });
   },
-  getExamples: function() {
+  getCompetitors: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/competitors",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteCompetitors: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/competitors/" + id,
       type: "DELETE"
     });
   }
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+var refreshCompetitors = function() {
+  API.getCompetitors().then(function(data) {
+    var $competitors = data.map(function(competitors) {
       var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(competitors.text)
+        .attr("href", "/example/" + competitors.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id
+          "data-id": competitors.id
         })
         .append($a);
 
@@ -54,8 +57,8 @@ var refreshExamples = function() {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $("#competitor-list").empty();
+    $("#competitor-list").append($competitors);
   });
 };
 
@@ -64,22 +67,28 @@ var refreshExamples = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var competitors = {
+    first_name: $("#first-name").val().trim(),
+    last_name: $("#last-name").val().trim(),
+    belt_color: $("#belt-color").val().trim(),
+    weight: $("#weight").val().trim(),
+    zipcode: $("#zipcode").val().trim()
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!(competitors.first_name && competitors.last_name)) {
+    alert("You must enter data in every field!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  API.saveCompetitor(competitors).then(function() {
+    refreshCompetitors();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $("#first-name").val("");
+  $("#last-name").val("");
+  $("#belt-color").val("");
+  $("#weight").val("");
+  $("#zipcode").val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -89,11 +98,11 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deleteCompetitors(idToDelete).then(function() {
+    refreshCompetitors();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$("#competitor-list").on("click", ".delete", handleDeleteBtnClick);
