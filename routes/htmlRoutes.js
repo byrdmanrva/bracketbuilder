@@ -19,6 +19,9 @@ module.exports = function(app) {
       });
     });
   });
+  app.get("/bracket", function(req, res) {
+    res.render("bracket")
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
