@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "sharitas1",
-    "database": "bracket",
+    "password": "Gobby911!",
+    "database": "bracketdb",
     "host": "localhost",
     "dialect": "mysql"
   },

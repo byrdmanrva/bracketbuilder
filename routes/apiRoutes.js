@@ -13,7 +13,6 @@ module.exports = function(app) {
   app.post("/api/competitors", function(req, res) {
     db.Competitors.create(req.body).then(function(dbbracketdb) {
       res.json(dbbracketdb);
-      console.log(competitors);
     });
   });
 

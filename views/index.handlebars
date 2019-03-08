@@ -15,29 +15,50 @@
           </div>
            <div class="form-group">
             <label for="example-text">Belt Color</label>
-            <input type="text" id="belt-color" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <select class="custom-select" id="belt-color">
+            <option selected> Choose</option>
+            <option value="whitebelt">White</option>
+            <option value="bluebelt">Blue</option>
+            <option value="purplebelt">Purple</option>
+            <option value="brownbelt">Brown</option>
+            <option value="blackbelt">Black</option>
+        </select>
           </div>
            <div class="form-group">
             <label for="example-text">Weight</label>
-            <input type="text" id="weight" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+        {{!-- <select class="custom-select">
+            <option selected>Choose</option>
+            <option value="lightfeather">Light Feather 53.5kg(118 lbs)</option>
+            <option value="feather">Feather 58.5kg(129 lbs)</option>
+            <option value="light">Light 64kg(141 lbs)</option>
+            <option value="middle">Middle 69kg(152 lbs)</option>
+            <option value="mediumheavy">Medium Heavy 74kg(163 lbs)</option>
+            <option value="heavy">No maximum weight</option>
+        </select> --}}
+            <input type="text" id="weight" maxlength="3" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
           </div>
            <div class="form-group">
             <label for="example-text">Zipcode</label>
-            <input type="text" id="zipcode" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="zipcode" maxlength="5" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
           </div>
           <div class="form-group">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Competitors:</h3>
-        <ul id="competitor-list" class="list-group">
-          {{#each Competitors}}
+        <div id="map">
+          <h4>MAP SPACE</h4>
+        </div>
+        <div id="competitor_row">
+          <h3>Competitors:</h3>
+            <ul id="competitor-list" class="list-group">
+          {{#each Competitor}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="competitors/{{this.id}}">{{this.text}}</a>
+            <a href="competitors/{{this.id}}">{{this.first_name}} {{this.last_name}} {{belt_color}} {{weight}} {{zipcode}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
         </ul>
+        </div>
       </div>
     </div>
   </div>
