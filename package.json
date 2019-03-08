@@ -11,6 +11,7 @@
   },
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "bootstrap": "^4.3.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
@@ -18,6 +19,14 @@
     "mysql2": "^1.6.4",
     "popper.js": "^1.14.7",
     "sequelize": "^4.41.2"
+=======
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.42.1"
+>>>>>>> 694d4f785db6f5181cf145054a4cd925c6d9de7a
   },
   "devDependencies": {
     "chai": "^4.1.2",
