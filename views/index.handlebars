@@ -1,21 +1,17 @@
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
+      <div class="col">
         {{!-- <h1>{{msg}}</h1> --}}
-        <h1>Bracket Builder</h1>
-        <form class="clearfix mb-4" action="POST">
-          {{!-- <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div> --}}
+        <div id="header">
+          <p class="headerText">Bracket</p>
+          <img src="../public/images/flaming-b.jpg" alt="">
+          <p class="headerText">Builder</p>
+        </div>
+      </div>
+      {{!-- <form class="clearfix mb-4" action="POST"> --}}
 
-          {{!-- <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div> --}}
-          {{!-- <button id="Belt" class="btn btn-primary float-right">Belt</button>
-          <button id="Weight" class="btn btn-secondary float-left">Weight</button> --}}
+        <div class="row">
 
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle float-right" type="button" data-toggle="dropdown">Belt
@@ -28,7 +24,7 @@
               <li><a href="#">Black</a></li>
             </ul>
           </div>
-        
+
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle float-left" type="button" data-toggle="dropdown">Weight
               <span class="caret"></span></button>
@@ -44,19 +40,21 @@
           </div>
 
           {{!--
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">S
-          {{#each examples}}S
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>S
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul> --}}
-      </div>
+      </form>
+      <h3>Examples:</h3>
+      <ul id="example-list" class="list-group">S
+        {{#each examples}}S
+        <li data-id="{{this.id}}" class="list-group-item">
+          <a href="example/{{this.id}}">{{this.text}}</a>S
+          <button class="btn btn-danger float-right delete">ｘ</button>
+        </li>
+        {{/each}}
+      </ul> --}}
     </div>
   </div>
+  <div id="map"></div>
+  <div id="list"></div>
+</div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
