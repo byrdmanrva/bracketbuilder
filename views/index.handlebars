@@ -1,7 +1,7 @@
 <div id="home">
   <div class="container">
     <div id="logo">
-      <img src="../public/assets/BB_Black_.png" alt="Bracket Builder Logo">
+      <img src="assets/BB_Black_.png" alt="Bracket Builder Logo">
     </div>
     <div class="row">
       <div class="col-8 offset-2">
@@ -48,14 +48,14 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <div id="map">
-          <h4>Map Space</h4>
-          <img src="../public/assets/demomap.jpeg" alt="placeholder map">
-        </div>
+        {{!-- Map --}}
+        <div id="map">"TEST"</div>
+
+  
         <div id="competitor_row">
           <h3>Competitors:</h3>
             <ul id="competitor-list" class="list-group">
-          {{#each Competitor}}
+          {{#each competitor}}
           <li data-id="{{this.id}}" class="list-group-item">
             <a href="competitors/{{this.id}}">{{this.first_name}} {{this.last_name}} {{belt_color}} {{weight}} {{zipcode}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
