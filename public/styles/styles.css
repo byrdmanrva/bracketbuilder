@@ -6,3 +6,13 @@
   float: left;
   width: 50%;
 } */
+
+#map {
+  height: 50%;
+  width: 100%;
+}
+
+#mainLogo {
+  height: 15%;
+  width: 15%
+}

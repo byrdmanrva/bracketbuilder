@@ -6,7 +6,7 @@ module.exports = function(app) {
     db.Competitors.findAll({}).then(function(dbbracketdb) {
       res.render("index", {
         //msg: "Welcome!",
-        Competitor: dbbracketdb
+        competitor: dbbracketdb
       });
     });
   });
