@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "sharitas1",
-=======
-    "password": "08Subaru!",
->>>>>>> c1a7fa5bd8f7bfca25b0fd3dde59f09fef313354
     "database": "bracketdb",
     "host": "localhost",
     "dialect": "mysql"
