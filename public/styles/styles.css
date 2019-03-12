@@ -1,6 +1,16 @@
 .list-group-item {
   line-height: 2.5;
 }
+#header{
+  display:inline-flex;
+  /* margin: 5% auto; */
+  text-align: center;
+
+}
+#header p{
+  font-family: 'Michroma', sans-serif;
+  font-size: 5em;
+}
 
 /* #competitor_row {
   float: left;
