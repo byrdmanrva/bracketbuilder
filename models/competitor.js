@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     belt_color: DataTypes.STRING,
-    weight: DataTypes.INTEGER,
+    weight: DataTypes.STRING,
     zipcode: DataTypes.INTEGER
   });
   return Competitors;
