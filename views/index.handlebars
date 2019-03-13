@@ -1,8 +1,13 @@
 <div id="home">
   <div class="container">
-    <div id="logo">
-      <img src="assets/BB_Black_.png" alt="Bracket Builder Logo" id="mainLogo">
-    </div>
+    <div id="header">
+          <p class="headerText">Bracket</p>
+          <div id="logo">
+            <img src="assets/BB_Black_.png" alt="Bracket Builder Logo" id="mainLogo">
+          </div>
+          <p class="headerText">Builder</p>
+        </div>    
+    
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
@@ -10,16 +15,16 @@
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">First Name</label>
-            <input type="text" id="first-name" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="first-name" class="form-control" aria-describedby="example-text" placeholder="Enter First Name">
           </div>
            <div class="form-group">
             <label for="example-text">Last Name</label>
-            <input type="text" id="last-name" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="last-name" class="form-control" aria-describedby="example-text" placeholder="Enter Last Name">
           </div>
            <div class="form-group">
             <label for="example-text">Belt Color</label>
             <select class="custom-select" id="belt-color">
-            <option selected> Choose</option>
+            <option selected> Choose Belt Color</option>
             <option value="whitebelt">White</option>
             <option value="bluebelt">Blue</option>
             <option value="purplebelt">Purple</option>
@@ -42,16 +47,20 @@
           </div>
            <div class="form-group">
             <label for="example-text">Zipcode</label>
-            <input type="text" id="zipcode" maxlength="5" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="zipcode" maxlength="5" class="form-control" aria-describedby="example-text" placeholder="Enter Zipcode">
           </div>
           <div class="form-group">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
         {{!-- Map --}}
-        <div id="map">"TEST"</div>
-
-  
+        <div id="map"></div>
+        <div class="col-8 offset-2">
+          <div class="form-group">
+            <input type="text" id="zip" class="form-control" aria-describedby="example-text" placeholder="Enter zipcode to find nearby gyms">
+            <button id="zipSubmit" class="btn btn-primary float-right">Submit</button>
+          </div>
+        </div>
         <div id="competitor_row">
           <h3>Competitors:</h3>
             <ul id="competitor-list" class="list-group">
