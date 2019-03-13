@@ -1,6 +1,7 @@
 .list-group-item {
   line-height: 2.5;
 }
+
 #header{
   display:inline-flex;
   /* margin: 5% auto; */
@@ -10,6 +11,9 @@
 #header p{
   font-family: 'Michroma', sans-serif;
   font-size: 5em;
+}
+form, input, label, p {
+  color: black !important;
 }
 
 /* #competitor_row {
