@@ -8,8 +8,6 @@ var $submitBtn = $("#submit");
 var $competitorList = $("#competitor-list");
 var $zipSubmit = $("#zipSubmit")
 
-
-
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveCompetitor: function(saveCompetitor) {
@@ -35,6 +33,8 @@ var API = {
     });
   }
 };
+
+var compZip;
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshCompetitors = function() {
@@ -99,6 +99,7 @@ var handleFormSubmit = function(event) {
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
+    .parent()
     .attr("data-id");
 
   API.deleteCompetitors(idToDelete).then(function() {
@@ -119,33 +120,49 @@ var userZip;
 
 var zipCollect = function(event) {
   event.preventDefault();
+
   userZip = $("#zip").val().trim()
 
   var geocoded = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userZip + "&key=AIzaSyDZYOxZZL8kgIlC4RLfG8Gkfr8xHnZmFTc"
+
   $.getJSON(geocoded, function(result){
     userLat = result.results[0].geometry.location.lat
     userLng = result.results[0].geometry.location.lng
-    console.log(geocoded);
-  map.setCenter({lat: userLat, lng: userLng});
-  var place = new google.maps.LatLng(userLat,userLng);
-  var request = {
-    query: "jiu jitsu gym",
-    location: place,
-    radius: "5000",
-  };
+    
+    map.setCenter({lat: userLat, lng: userLng});
+    var place = new google.maps.LatLng(userLat,userLng);
+    var request = {
+      query: "jiu jitsu gym",
+      location: place,
+      radius: "5000",
+    };
 
-  service = new google.maps.places.PlacesService(map);
+    service = new google.maps.places.PlacesService(map);
 
-  service.textSearch(request, function(results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-          createMarker(results[i]);
-      }
+    service.textSearch(request, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+        }
 
-      }
-  });
+        }
+      });
   })
   $("#zip").val("");
+  
+  API.getCompetitors().then(function(data) {
+    for (i = 0; i < data.length; i++) {
+      compZip = data[i].zipcode
+      // var zipApi = "https://www.zipcodeapi.com/rest/W0TmA20g0feVfyvAbCfQ8UsdpNp0AME9pphPY3GR3shPXVrJLnnd6YSvhdHaS00O/distance.json/" + userZip + "/" + compZip + "/mile"
+      // console.log(zipApi)
+      // $.ajax({
+      //   "url": zipApi,
+      //   "dataType": "json"
+      // }).done(function(results) {
+      //   console.log(results);
+      // })
+    }
+  })
 }
 
 $zipSubmit.on("click", zipCollect);
