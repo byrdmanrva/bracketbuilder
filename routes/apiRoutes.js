@@ -60,8 +60,15 @@ module.exports = function(app) {
 
   // Create a new competitors
   app.post("/api/competitors", function(req, res) {
-    db.Competitors.create(req.body).then(function(dbbracketdb) {
-      res.json(dbbracketdb);
+    // run a query to get users that match our user's belt + weight
+    const userData = req.body;
+
+    db.Competitors.findAll({
+      where: { belt_color: userData.belt_color, weight: userData.weight}
+    }).then((matchesRes) => {
+      db.Competitors.create(req.body).then(() => {
+        res.json(matchesRes); 
+      });      
     });
   });
 

@@ -37,32 +37,33 @@ var API = {
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshCompetitors = function() {
-  API.getCompetitors().then(function(data) {
-    var $competitors = data.map(function(competitors) {
-      var $a = $("<a>")
-        .text(competitors.text)
-        .attr("href", "/example/" + competitors.id);
+var refreshCompetitors = function(matches) {
+  console.log("matches", matches);
+  // API.getCompetitors().then(function(data) {
+  //   var $competitors = data.map(function(competitors) {
+  //     var $a = $("<a>")
+  //       .text(competitors.text)
+  //       .attr("href", "/example/" + competitors.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": competitors.id
-        })
-        .append($a);
+  //     var $li = $("<li>")
+  //       .attr({
+  //         class: "list-group-item",
+  //         "data-id": competitors.id
+  //       })
+  //       .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+  //     var $button = $("<button>")
+  //       .addClass("btn btn-danger float-right delete")
+  //       .text("ｘ");
 
-      $li.append($button);
+  //     $li.append($button);
 
-      return $li;
-    });
+  //     return $li;
+  //   });
 
-    $("#competitor-list").empty();
-    $("#competitor-list").append($competitors);
-  });
+  //   $("#competitor-list").empty();
+  //   $("#competitor-list").append($competitors);
+  // });
 };
 
 // handleFormSubmit is called whenever we submit a new example
@@ -70,7 +71,7 @@ var refreshCompetitors = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var competitors = {
+  var competitor = {
     first_name: $("#first-name").val().trim(),
     last_name: $("#last-name").val().trim(),
     belt_color: $("#belt-color").val().trim(),
@@ -78,13 +79,13 @@ var handleFormSubmit = function(event) {
     zipcode: $("#zipcode").val().trim()
   };
 
-  if (!(competitors.first_name && competitors.last_name)) {
+  if (!(competitor.first_name && competitor.last_name)) {
     alert("You must enter data in every field!");
     return;
   }
 
-  API.saveCompetitor(competitors).then(function() {
-    refreshCompetitors();
+  API.saveCompetitor(competitor).then(function(res) {
+    transformMatches(res);
   });
 
   $("#first-name").val("");
@@ -93,6 +94,13 @@ var handleFormSubmit = function(event) {
   $("#weight").val("");
   $("#zipcode").val("");
 };
+
+// var transformMatches = (matches) => {
+//  return  matches.map(user => {
+//    console.log("user route", user);
+//    return dataValues;
+//  })
+// }
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list

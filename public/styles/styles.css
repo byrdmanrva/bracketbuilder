@@ -33,7 +33,7 @@ form.login {
 }
 
 #signup-photo {
-  float: right;
+  align: center;
 }
 
 /* #signup-body {

@@ -9,7 +9,7 @@ CREATE TABLE competitor (
   first_name VARCHAR(45) NOT NULL,
   last_name VARCHAR(45) NOT NULL,
   belt_color VARCHAR(45),
-  weight INT NOT NULL, 
+  weight VARCHAR(45), 
   zipcode INT NOT NULL,
   PRIMARY KEY (id)
 );
