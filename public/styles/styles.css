@@ -20,7 +20,6 @@ body {
 form, input, label, p {
   color: black !important;
 }
-
 #primary {
   background-color: white;
   padding: 1%;
@@ -47,7 +46,6 @@ input {
 }
 
 #mainLogo {
-
   height: 30%;
   width: 30%;
   margin-top: 5%;
@@ -68,4 +66,4 @@ form.login {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
-
+} */
