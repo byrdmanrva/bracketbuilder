@@ -1,3 +1,8 @@
+body {
+  /* background-color: rgb(210, 217, 255); */
+  background-image: url("../assets/halftone-yellow/halftone-yellow.png")
+
+}
 .list-group-item {
   line-height: 2.5;
 }
@@ -15,6 +20,17 @@
 form, input, label, p {
   color: black !important;
 }
+#primary {
+  background-color: white;
+  padding: 1%;
+  box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+
+}
+input {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
 
 /* #competitor_row {
   float: left;
@@ -24,11 +40,16 @@ form, input, label, p {
 #map {
   height: 50%;
   width: 100%;
+  box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey;
+
+  /* border: 1px solid black; */
 }
 
 #mainLogo {
-  height: 15%;
-  width: 15%
+  height: 30%;
+  width: 30%;
+  margin-top: 5%;
+
 }
 
 form.signup,
