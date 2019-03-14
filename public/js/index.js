@@ -39,11 +39,6 @@ var compZip;
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshCompetitors = function() {
   API.getCompetitors().then(function(data) {
-    console.log(data)
-    for (i = 0; i < data.length; i++) {
-      compZip = data[i].zipcode
-      console.log(compZip)
-    }
     var $competitors = data.map(function(competitors) {
       var $a = $("<a>")
         .text(competitors.text)
@@ -104,6 +99,7 @@ var handleFormSubmit = function(event) {
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
+    .parent()
     .attr("data-id");
 
   API.deleteCompetitors(idToDelete).then(function() {
@@ -157,14 +153,14 @@ var zipCollect = function(event) {
   API.getCompetitors().then(function(data) {
     for (i = 0; i < data.length; i++) {
       compZip = data[i].zipcode
-      var zipApi = "https://www.zipcodeapi.com/rest/W0TmA20g0feVfyvAbCfQ8UsdpNp0AME9pphPY3GR3shPXVrJLnnd6YSvhdHaS00O/distance.json/" + userZip + "/" + compZip + "/mile"
-      // $.getJSON(zipApi, function(results) {
-      //   console.log(results.distance)
+      // var zipApi = "https://www.zipcodeapi.com/rest/W0TmA20g0feVfyvAbCfQ8UsdpNp0AME9pphPY3GR3shPXVrJLnnd6YSvhdHaS00O/distance.json/" + userZip + "/" + compZip + "/mile"
+      // console.log(zipApi)
+      // $.ajax({
+      //   "url": zipApi,
+      //   "dataType": "json"
+      // }).done(function(results) {
+      //   console.log(results);
       // })
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", zipApi, true);
-      var body = xmlhttp.response;
-      console.log(body)
     }
   })
 }

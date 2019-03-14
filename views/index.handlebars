@@ -6,7 +6,7 @@
             <img src="assets/BB_Black_.png" alt="Bracket Builder Logo" id="mainLogo">
           </div>
           <p class="headerText">Builder</p>
-        </div>    
+        </div>
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
@@ -52,6 +52,44 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
+        {{!-- Competitors --}}
+        <div id="competitor_row">
+          <h3>Competitors:</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Belt Color</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Zipcode</th>
+                <th scope="col">Distance</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody id="competitor-list">
+              {{#each competitor}}
+              <tr data-id="{{this.id}}">
+                <td>{{this.id}}</th>
+                <td>{{this.first_name}} {{this.last_name}}</td>
+                <td>{{this.belt_color}}</td>
+                <td>{{this.weight}}</td>
+                <td>{{this.zipcode}}</td>
+                <td></td>
+                <td><button class="btn btn-danger float-right delete">ｘ</button></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+            {{!-- <ul id="competitor-list" class="list-group">
+              {{#each competitor}}
+              <li data-id="{{this.id}}" class="list-group-item">
+                <a href="competitors/{{this.id}}">{{this.first_name}} {{this.last_name}} {{belt_color}} {{weight}} {{zipcode}}</a>
+                <button class="btn btn-danger float-right delete">ｘ</button>
+              </li>
+              {{/each}}
+            </ul> --}}
+        </div>
         {{!-- Map --}}
         <div id="map"></div>
         <div class="col-8 offset-2">
@@ -59,18 +97,6 @@
             <input type="text" id="zip" class="form-control" aria-describedby="example-text" placeholder="Enter zipcode to find nearby gyms">
             <button id="zipSubmit" class="btn btn-primary float-right">Submit</button>
           </div>
-        </div>
-        {{!-- Competitors --}}
-        <div id="competitor_row">
-          <h3>Competitors:</h3>
-            <ul id="competitor-list" class="list-group">
-          {{#each competitor}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="competitors/{{this.id}}">{{this.first_name}} {{this.last_name}} {{belt_color}} {{weight}} {{zipcode}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
         </div>
       </div>
     </div>
