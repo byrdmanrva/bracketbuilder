@@ -6,8 +6,8 @@
             <img src="assets/BB_Black_.png" alt="Bracket Builder Logo" id="mainLogo">
           </div>
           <p class="headerText">Builder</p>
-        </div>    
-    
+
+        </div>
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
@@ -15,16 +15,16 @@
         <form class="clearfix mb-4" action="POST" id="primary">
           <div class="form-group">
             <label for="example-text">First Name</label>
-            <input type="text" id="first-name" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>        
+            <input type="text" id="first-name" class="form-control" aria-describedby="example-text" placeholder="Enter First Name">
+          </div>
            <div class="form-group">
             <label for="example-text">Last Name</label>
-            <input type="text" id="last-name" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="last-name" class="form-control" aria-describedby="example-text" placeholder="Enter Last Name">
           </div>
            <div class="form-group">
             <label for="example-text">Belt Color</label>
             <select class="custom-select" id="belt-color">
-            <option selected> Choose</option>
+            <option selected> Choose Belt Color</option>
             <option value="whitebelt">White</option>
             <option value="bluebelt">Blue</option>
             <option value="purplebelt">Purple</option>
@@ -43,29 +43,63 @@
             <option value="mediumheavy">Medium Heavy 74kg(163 lbs)</option>
             <option value="heavy">No maximum weight</option>
         </select> --}}
-            <input type="text" id="weight" maxlength="3" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="weight" maxlength="3" class="form-control" aria-describedby="example-text" placeholder="Enter Weight">
           </div>
            <div class="form-group">
             <label for="example-text">Zipcode</label>
-            <input type="text" id="zipcode" maxlength="5" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="zipcode" maxlength="5" class="form-control" aria-describedby="example-text" placeholder="Enter Zipcode">
           </div>
           <div class="form-group">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>          
-        {{!-- Map --}}
-        <div id="map"></div>
-  
+
+        </form>
+        {{!-- Competitors --}}
+
         <div id="competitor_row">
           <h3>Competitors:</h3>
-            <ul id="competitor-list" class="list-group">
-          {{#each competitor}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="competitors/{{this.id}}">{{this.first_name}} {{this.last_name}} {{belt_color}} {{weight}} {{zipcode}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Belt Color</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Zipcode</th>
+                <th scope="col">Distance</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody id="competitor-list">
+              {{#each competitor}}
+              <tr data-id="{{this.id}}">
+                <td>{{this.id}}</th>
+                <td>{{this.first_name}} {{this.last_name}}</td>
+                <td>{{this.belt_color}}</td>
+                <td>{{this.weight}}</td>
+                <td>{{this.zipcode}}</td>
+                <td></td>
+                <td><button class="btn btn-danger float-right delete">ｘ</button></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+            {{!-- <ul id="competitor-list" class="list-group">
+              {{#each competitor}}
+              <li data-id="{{this.id}}" class="list-group-item">
+                <a href="competitors/{{this.id}}">{{this.first_name}} {{this.last_name}} {{belt_color}} {{weight}} {{zipcode}}</a>
+                <button class="btn btn-danger float-right delete">ｘ</button>
+              </li>
+              {{/each}}
+            </ul> --}}
+        </div>
+        {{!-- Map --}}
+        <div id="map"></div>
+        <div class="col-8 offset-2">
+          <div class="form-group">
+            <input type="text" id="zip" class="form-control" aria-describedby="example-text" placeholder="Enter zipcode to find nearby gyms">
+            <button id="zipSubmit" class="btn btn-primary float-right">Submit</button>
+          </div>
         </div>
       </div>
     </div>
