@@ -46,10 +46,15 @@ input {
 }
 
 #mainLogo {
-  height: 30%;
-  width: 30%;
-  margin-top: 5%;
+  height: 40%;
+  width: 60%;
+  margin-top: 25%;
+}
 
+#mainLogo2 {
+  height: 10%;
+  width: 20%;
+  align-content: center;
 }
 
 form.signup,
@@ -58,7 +63,32 @@ form.login {
 }
 
 #signup-photo {
-  align: center;
+  width: 100%;
+  margin-top: 25%;
+  margin-left: 20%
+}
+
+#zip {
+  margin-top: 10px;
+  background-color: rgb(245, 245, 245);
+  padding: 2px;
+  box-shadow: 0 4px 8px 0 grey, 0 3px 20px 0 grey;
+}
+
+#zipSubmit {
+  margin-bottom: 20px;
+}
+
+#signup {
+  margin-top: 0px;
+}
+
+#email-input {
+  box-shadow: 0 4px 8px 0 grey, 0 3px 20px 0 grey;
+}
+
+#password-input {
+  box-shadow: 0 4px 8px 0 grey, 0 3px 20px 0 grey;
 }
 
 /* #signup-body {

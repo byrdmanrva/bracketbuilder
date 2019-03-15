@@ -112,6 +112,7 @@ $("#competitor-list").on("click", ".delete", handleDeleteBtnClick);
 var userLat;
 var userLng;
 var userZip;
+var compZip;
 
 var zipCollect = function(event) {
   event.preventDefault();
@@ -140,6 +141,13 @@ var zipCollect = function(event) {
 
       }
   });
+  // API.getCompetitors().then(function(data) {
+  //   for (i = 0; i < data.length; i++) {
+  //     compZip = data[i].zipcode
+  //   }
+  // })
+  // var distance = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + userZip + "&destinations=" + compZip + "&key=AIzaSyDZYOxZZL8kgIlC4RLfG8Gkfr8xHnZmFTc"
+  // console.log(distance.rows.elements.distance)
   })
   $("#zip").val("");
 }
