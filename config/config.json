@@ -1,24 +1,20 @@
 {
   "development": {
     "username": "root",
-    "password": "Gobby911!",
+    "password": "08Subaru!",
     "database": "bracketdb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "Gobby911!",
+    "password": "08Subaru!",
     "database": "bracketdb",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false
   },
   "production": {
-    "username": "root",
-    "password": "Gobby911!",
-    "database": "bracketdb",
-    "host": "localhost",
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
