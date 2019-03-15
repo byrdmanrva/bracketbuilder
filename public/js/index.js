@@ -2,11 +2,11 @@
 var $first_name = $("#first-name");
 var $last_name = $("#last-name");
 var $belt_color = $("#belt-color");
-var $weight = $("#weight")
-var $zipcode = $("#zipcode")
+var $weight = $("#weight");
+var $zipcode = $("#zipcode");
 var $submitBtn = $("#submit");
 var $competitorList = $("#competitor-list");
-var $zipSubmit = $("#zipSubmit")
+var $zipSubmit = $("#zipSubmit");
 
 
 
@@ -37,40 +37,36 @@ var API = {
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshCompetitors = function() {
-  API.getCompetitors().then(function(data) {
-    var $competitors = data.map(function(competitors) {
-      var $a = $("<a>")
-        .text(competitors.text)
-        .attr("href", "/example/" + competitors.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": competitors.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
+var refreshCompetitors = function(matches) {
+  let $matchedCompetitors;
+  if (matches.length > 0) {
+    $matchedCompetitors = matches.map(match => {
+      const $rowData = [
+        $("<td>").text(match.first_name),
+        $("<td>").text(match.last_name),
+        $("<td>").text(match.belt_color),
+        $("<td>").text(match.weight),
+        $("<td>").text(match.zipcode),
+        $("<td>").append(
+          $("<button>")
+            .addClass("btn btn-danger float-right delete")
+            .text("x")
+        )
+      ];
+      return ($row = $("<tr>").append($rowData));
     });
-
-    $("#competitor-list").empty();
-    $("#competitor-list").append($competitors);
-  });
+  } else {
+    $matchedCompetitors = $("<tr>").text("no matches");
+  }
+  $("#competitor-list").empty();
+  $("#competitor-list").append($matchedCompetitors);
 };
-
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var competitors = {
+  var competitor = {
     first_name: $("#first-name").val().trim(),
     last_name: $("#last-name").val().trim(),
     belt_color: $("#belt-color").val().trim(),
@@ -78,13 +74,13 @@ var handleFormSubmit = function(event) {
     zipcode: $("#zipcode").val().trim()
   };
 
-  if (!(competitors.first_name && competitors.last_name)) {
+  if (!(competitor.first_name && competitor.last_name)) {
     alert("You must enter data in every field!");
     return;
   }
 
-  API.saveCompetitor(competitors).then(function() {
-    refreshCompetitors();
+  API.saveCompetitor(competitor).then(function(res) {
+    refreshCompetitors(res);
   });
 
   $("#first-name").val("");
