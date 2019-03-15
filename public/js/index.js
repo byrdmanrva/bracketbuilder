@@ -2,11 +2,11 @@
 var $first_name = $("#first-name");
 var $last_name = $("#last-name");
 var $belt_color = $("#belt-color");
-var $weight = $("#weight")
-var $zipcode = $("#zipcode")
+var $weight = $("#weight");
+var $zipcode = $("#zipcode");
 var $submitBtn = $("#submit");
 var $competitorList = $("#competitor-list");
-var $zipSubmit = $("#zipSubmit")
+var $zipSubmit = $("#zipSubmit");
 
 
 
@@ -38,34 +38,29 @@ var API = {
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshCompetitors = function(matches) {
-  console.log("matches", matches);
-  // API.getCompetitors().then(function(data) {
-  //   var $competitors = data.map(function(competitors) {
-  //     var $a = $("<a>")
-  //       .text(competitors.text)
-  //       .attr("href", "/example/" + competitors.id);
-
-  //     var $li = $("<li>")
-  //       .attr({
-  //         class: "list-group-item",
-  //         "data-id": competitors.id
-  //       })
-  //       .append($a);
-
-  //     var $button = $("<button>")
-  //       .addClass("btn btn-danger float-right delete")
-  //       .text("ｘ");
-
-  //     $li.append($button);
-
-  //     return $li;
-  //   });
-
-  //   $("#competitor-list").empty();
-  //   $("#competitor-list").append($competitors);
-  // });
+  let $matchedCompetitors;
+  if (matches.length > 0) {
+    $matchedCompetitors = matches.map(match => {
+      const $rowData = [
+        $("<td>").text(match.first_name),
+        $("<td>").text(match.last_name),
+        $("<td>").text(match.belt_color),
+        $("<td>").text(match.weight),
+        $("<td>").text(match.zipcode),
+        $("<td>").append(
+          $("<button>")
+            .addClass("btn btn-danger float-right delete")
+            .text("x")
+        )
+      ];
+      return ($row = $("<tr>").append($rowData));
+    });
+  } else {
+    $matchedCompetitors = $("<tr>").text("no matches");
+  }
+  $("#competitor-list").empty();
+  $("#competitor-list").append($matchedCompetitors);
 };
-
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -85,7 +80,7 @@ var handleFormSubmit = function(event) {
   }
 
   API.saveCompetitor(competitor).then(function(res) {
-    transformMatches(res);
+    refreshCompetitors(res);
   });
 
   $("#first-name").val("");
@@ -94,13 +89,6 @@ var handleFormSubmit = function(event) {
   $("#weight").val("");
   $("#zipcode").val("");
 };
-
-// var transformMatches = (matches) => {
-//  return  matches.map(user => {
-//    console.log("user route", user);
-//    return dataValues;
-//  })
-// }
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
