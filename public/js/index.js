@@ -39,11 +39,11 @@ var API = {
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshCompetitors = function(matches) {
   let $matchedCompetitors;
-  if (matches.length > 0) {
+  if (matches && matches.length > 0) {
     $matchedCompetitors = matches.map(match => {
       const $rowData = [
-        $("<td>").text(match.first_name),
-        $("<td>").text(match.last_name),
+        $("<td>").text(match.id),
+        $("<td>").text(`${match.first_name} ${match.last_name}`),
         $("<td>").text(match.belt_color),
         $("<td>").text(match.weight),
         $("<td>").text(match.zipcode),
@@ -53,13 +53,15 @@ var refreshCompetitors = function(matches) {
             .text("x")
         )
       ];
-      return ($row = $("<tr>").append($rowData));
+      const $row = $("<tr>").attr("data-id", match.id);
+     return ($row.append($rowData));
     });
   } else {
     $matchedCompetitors = $("<tr>").text("no matches");
   }
   $("#competitor-list").empty();
   $("#competitor-list").append($matchedCompetitors);
+  $("#competitorHeader").text("Your Matches:");
 };
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
@@ -95,10 +97,14 @@ var handleFormSubmit = function(event) {
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
+    .parent()
     .attr("data-id");
 
   API.deleteCompetitors(idToDelete).then(function() {
-    refreshCompetitors();
+    API.getCompetitors().then(function(res){
+      console.log(res);
+      refreshCompetitors(res);
+    });
   });
 };
 
