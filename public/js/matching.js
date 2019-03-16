@@ -1,4 +1,4 @@
-var beltColor= sequelize.define('beltColor', {belt_color: sequeize.STRING});
+var beltColor= sequelize.define('beltColor', {belt_color: sequelize.STRING});
 console.log(beltColor);
 
 var weight= sequelize.define('weight', {weight: sequelize.STRING});
