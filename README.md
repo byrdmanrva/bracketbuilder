@@ -2,7 +2,7 @@
 
 A website to help female Brazilian Jiu-Jitsu figthers find opponents in their weight and belt class. Find BJJ gyms nearby with Google Maps integration.
 
-![Bracket Builder Demo](https://i.imgur.com/8OyP2fq.gif)
+![Bracket Builder Demo](https://media.giphy.com/media/ce22sRQoj5VEdUaz7D/giphy.gif)
 
 
 
